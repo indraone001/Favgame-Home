@@ -135,7 +135,7 @@ extension HomeViewController: SkeletonCollectionViewDataSource, SkeletonCollecti
   
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     let selectedGameId = gameList?[indexPath.row].id
-    let detailVC = Injection().container.resolve(DetailViewController.self)
+    let detailVC = DetailRouter().container.resolve(DetailViewController.self)
     guard let detailVC = detailVC else { return }
     detailVC.configure(withGameId: selectedGameId!)
     
