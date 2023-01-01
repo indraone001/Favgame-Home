@@ -9,6 +9,7 @@ import UIKit
 import Combine
 import SkeletonView
 import Favgame_Core
+import Favgame_Detail
 
 public class HomeViewController: UIViewController {
   // MARK: - Properties
@@ -42,12 +43,12 @@ public class HomeViewController: UIViewController {
   }()
   
   // MARK: - Life Cycle
-  override func viewDidAppear(_ animated: Bool) {
+  public override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
     self.tabBarController?.tabBar.isHidden = false
   }
   
-  override func viewDidLoad() {
+  public override func viewDidLoad() {
     super.viewDidLoad()
     view.backgroundColor = UIColor(rgb: Constant.rhinoColor)
     setupUI()
@@ -101,20 +102,20 @@ public class HomeViewController: UIViewController {
 
 extension HomeViewController: SkeletonCollectionViewDataSource, SkeletonCollectionViewDelegate, UICollectionViewDelegateFlowLayout {
   // MARK: - SkeletonCollectionViewDataSource
-  func collectionSkeletonView(_ skeletonView: UICollectionView, cellIdentifierForItemAt indexPath: IndexPath) -> SkeletonView.ReusableCellIdentifier {
+  public func collectionSkeletonView(_ skeletonView: UICollectionView, cellIdentifierForItemAt indexPath: IndexPath) -> SkeletonView.ReusableCellIdentifier {
     return GameCollectionViewCell.identifier
   }
   
-  func collectionSkeletonView(_ skeletonView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+  public func collectionSkeletonView(_ skeletonView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
     return 8
   }
   
   // MARK: - UICollectionViewDataSource
-  func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+  public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
     return gameList?.count ?? 0
   }
   
-  func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+  public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     guard let gameCell = collectionView.dequeueReusableCell(
         withReuseIdentifier: GameCollectionViewCell.identifier,
         for: indexPath
@@ -130,11 +131,11 @@ extension HomeViewController: SkeletonCollectionViewDataSource, SkeletonCollecti
   }
     
   // MARK: - UICollectionViewDelegateFlowLayout
-  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+  public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
     return CGSize(width: view.frame.width / 2 - 16, height: 280)
   }
   
-  func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+  public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     let selectedGameId = gameList?[indexPath.row].id
     let detailVC = DetailRouter().container.resolve(DetailViewController.self)
     guard let detailVC = detailVC else { return }
