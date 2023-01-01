@@ -10,7 +10,7 @@ import Combine
 import SkeletonView
 import Favgame_Core
 
-class HomeViewController: UIViewController {
+public class HomeViewController: UIViewController {
   // MARK: - Properties
   var getListGameUseCase: GetListGameUseCase?
   private var cancellables: Set<AnyCancellable> = []
