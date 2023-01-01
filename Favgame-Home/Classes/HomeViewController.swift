@@ -8,7 +8,7 @@
 import UIKit
 import Combine
 import SkeletonView
-import Favgame-Core
+import Favgame_Core
 
 class HomeViewController: UIViewController {
   // MARK: - Properties
